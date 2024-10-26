@@ -1,0 +1,4 @@
+baseURL = 'https://nich.dk/'
+languageCode = 'en-us'
+title = 'nich.dk'
+theme = 'nostyleplease'
