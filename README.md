@@ -15,3 +15,9 @@ git submodule update --init
 ```bash
 hugo new content content/posts/new-website.md
 ```
+
+## Create "page" without date in top right corner
+Add the following to the [front-matter](https://gohugo.io/content-management/front-matter/#layout)
+```toml
+layout = 'page'
+```
