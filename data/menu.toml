@@ -2,6 +2,10 @@
 title = "socials"
 
   [[entries.entries]]
+  title = "public@nich.dk"
+  url = "mailto:public@nich.dk"
+
+  [[entries.entries]]
   title = "linkedin"
   url = "https://www.linkedin.com/in/nicholas-ngarura"
 
