@@ -94,7 +94,7 @@ _setup_debian.yml_:
 ```
 
 _hosts_:
-```
+```ini
 [mail.nich.dk]
 88.198.127.102 ansible_user=root
 ```
