@@ -22,7 +22,7 @@ From what I could gather from the comments and the website, it looks like Mox so
 
 Luckily, this is not the case! You can just use the subdomain to connect to IMAP and SMTP, and still get an email with your domain without a subdomain like so: _example@example.com_.
 
-You just need to add the appropriate DNS entries, which I will do in this
+You just need to add the appropriate DNS entries, which I will do later in this post.
 
 You can also use your subdomain if you want to.
 
