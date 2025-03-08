@@ -2,17 +2,16 @@
 title = "socials"
 
   [[entries.entries]]
-  title = "public@nich.dk"
-  url = "mailto:public@nich.dk"
+  title = "github"
+  url = "https://github.com/nicholas-mn"
 
   [[entries.entries]]
   title = "linkedin"
   url = "https://www.linkedin.com/in/nicholas-ngarura"
 
   [[entries.entries]]
-  title = "github"
-  url = "https://github.com/nicholas-mn"
-
+  title = "public@nich.dk"
+  url = "mailto:public@nich.dk"
 
 [[entries]]
 title = "all posts"
