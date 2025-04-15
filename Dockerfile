@@ -17,9 +17,6 @@ WORKDIR /site
 # Copy site content
 COPY . .
 
-# After copying the repo, before running Hugo
-RUN git submodule update --init --recursive
-
 # Build the site
 RUN hugo --minify
 
