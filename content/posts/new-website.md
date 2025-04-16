@@ -7,4 +7,6 @@ New day, new website.
 
 Using [Hugo](https://gohugo.io/) as [Static Site Generator](https://en.wikipedia.org/wiki/Static_site_generator).
 
-The theme is [no style, please!](https://github.com/hanwenguo/hugo-theme-nostyleplease) by [Hanwen Guo](https://github.com/hanwenguo)
+The theme is [no style, please!](https://github.com/hanwenguo/hugo-theme-nostyleplease) by [Hanwen Guo](https://github.com/hanwenguo).
+
+Keep an eye open for new posts! : - )
