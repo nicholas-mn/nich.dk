@@ -13,6 +13,11 @@
   <!-- Open Graph / Facebook -->
   {{ if .IsPage }}
   <meta property="og:description" content="{{ .Summary }}" />
+  {{ else if .IsHome }}
+  <meta
+    property="og:description"
+    content="Nicholas Ngarura's personal website."
+  />
   {{ end }}
 
   <meta
