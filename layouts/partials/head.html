@@ -1,0 +1,53 @@
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {{ if .IsPage }}
+  <meta name="description" content="{{ .Summary }}" />
+  {{ end }}
+
+  <title>
+    {{ if not .IsHome }} {{ .Title }} {{ else }} {{ $.Site.Title }} {{ end }}
+  </title>
+
+  <!-- Open Graph / Facebook -->
+  {{ if .IsPage }}
+  <meta property="og:description" content="{{ .Summary }}" />
+  {{ end }}
+
+  <meta
+    property="og:title"
+    content="{{ if not .IsHome }}{{ .Title }}{{ else }}{{ $.Site.Title }}{{ end }}"
+  />
+  <meta
+    property="og:type"
+    content="{{ if .IsHome}}website{{ else }}article{{ end }}"
+  />
+
+  <meta property="og:url" content="{{ .Permalink }}" />
+
+  <meta property="og:image" content="https://nich.dk/nicholas.png" />
+  <meta property="og:image:alt" content="Nicholas Ngarura" />
+  <meta property="og:image:width" content="500" />
+  <meta property="og:image:height" content="500" />
+
+  {{ if .IsPage }}
+  <meta property="article:author" content="Nicholas Ngarura" />
+  <meta property="artice:published_time" content="{{ .Date }}" />
+  {{ end }}
+
+  <link
+    rel="shortcut icon"
+    type="image/x-icon"
+    href="{{ $.Site.Params.favicon | relURL }}"
+  />
+  {{ $options := (dict "outputStyle" "compressed" "enableSourceMap" (not
+  hugo.IsProduction)) }} {{ $sass := resources.Get "css/main.scss" }} {{ $style
+  := $sass | css.Sass $options | resources.Fingerprint "sha512" }}
+  <link
+    rel="stylesheet"
+    href="{{ $style.Permalink | relURL }}"
+    integrity="{{ $style.Data.Integrity }}"
+  />
+  {{ if .Params.mathjax }} {{ partial "mathjax.html" . }} {{ end }}
+</head>
