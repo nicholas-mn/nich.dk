@@ -1,12 +1,36 @@
 [[entries]]
-title = "socials"
+title = "About Me"
 
   [[entries.entries]]
-  title = "github"
+  title = "IT Recruitment Consultant"
+
+  [[entries.entries]]
+  title = "Open-Source enthusiast"
+
+  [[entries.entries]]
+  title = "Aspiring Web Developer"
+
+    [[entries.entries.entries]]
+    title = "JavaScript / TypeScript"
+
+    [[entries.entries.entries]]
+    title = "Node.js / Deno"
+
+    [[entries.entries.entries]]
+    title = "SvelteKit"
+
+    [[entries.entries.entries]]
+    title = "PocketBase"
+
+[[entries]]
+title = "Socials"
+
+  [[entries.entries]]
+  title = "Github"
   url = "https://github.com/nicholas-mn"
 
   [[entries.entries]]
-  title = "linkedin"
+  title = "LinkedIn"
   url = "https://www.linkedin.com/in/nicholas-ngarura"
 
   [[entries.entries]]
@@ -14,7 +38,7 @@ title = "socials"
   url = "mailto:public@nich.dk"
 
 [[entries]]
-title = "all posts"
+title = "All posts"
 
   [entries.post_list]
   limit = 5
@@ -33,7 +57,7 @@ title = "all posts"
 #  show_more_url = "posts"
 
 [[entries]]
-title = "rss"
+title = "RSS"
 url = "index.xml"
 
 #[[entries]]
