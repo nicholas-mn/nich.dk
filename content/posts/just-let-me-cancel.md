@@ -5,13 +5,14 @@ title = 'Just let me cancel'
 +++
 
 I have had 2 different gym subscriptions.
+
 One with Fitness World (now [PureGym](https://www.puregym.dk/)) and [Sporting Health Club](https://sportinghealthclub.dk/) (SHC).
 
 Puregym is cheaper and has more locations, but their machines suck. So I am begrudgingly with SHC currently.
 
 Why begrudgingly?
 
-Well, SHC doesn’t allow their members to cancel their subscription the same way they created them - one their website.
+Well, SHC doesn’t allow their members to cancel their subscription the same way they created them - on their website.
 
 You need to send them an email.
 
