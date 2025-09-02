@@ -4,7 +4,7 @@ draft = false
 title = 'Low-Code / No-Code Development Sucks'
 +++
 
-While learning programming, I was very attracted to Low Code / No Code tools.
+While learning web development, I was very attracted to Low Code / No Code tools.
 
 It allowed me, with my meager skills, to quickly get a working web app out.
 
