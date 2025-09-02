@@ -2,3 +2,10 @@ baseURL = 'https://nich.dk/'
 languageCode = 'en-us'
 title = 'nich.dk'
 theme = 'nostyleplease'
+
+[params]
+  [params.theme_config]
+    appearance = "auto"
+    back_home_text = "< nich.dk"
+    date_format = "2006-01-02"
+    isListGroupByDate = false
