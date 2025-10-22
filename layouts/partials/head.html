@@ -5,11 +5,14 @@
   {{ if .IsPage }}
   <meta name="description" content="{{ .Summary }}" />
   {{ end }}
+
+  <!-- Cloudflare Web Analytics -->
   <script
     defer
-    data-domain="nich.dk"
-    src="https://nich.dk/js/script.js"
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "672cd5fb49714a2cadb69c6ce588c00c"}'
   ></script>
+  <!-- End Cloudflare Web Analytics -->
 
   <title>
     {{ if not .IsHome }} {{ .Title }} {{ else }} {{ $.Site.Title }} {{ end }}
