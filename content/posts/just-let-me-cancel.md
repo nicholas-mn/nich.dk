@@ -1,7 +1,7 @@
 +++
 date = '2025-07-24T20:11:31+02:00'
 draft = false
-title = 'Just let me cancel'
+title = 'Just Let me Cancel'
 +++
 
 I have had 2 different gym subscriptions.
