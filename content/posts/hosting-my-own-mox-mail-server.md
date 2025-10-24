@@ -3,7 +3,6 @@ date = '2025-03-07T21:06:44+01:00'
 draft = false
 title = 'Hosting My Own Mox Mail Server'
 +++
-# Intro
 
 I have wanted to distance my self as much as possible from Big Tech (Google, Microsoft, etc.), so I have been using [mailbox.org](https://mailbox.org/en/) as my mail host for the past few years. No major complaints from me.
 
@@ -27,11 +26,13 @@ You just need to add the appropriate DNS entries, which I will do later in this 
 You can also use your subdomain if you want to.
 
 ## Setting up Debian Server
+
 I spun up a new VPS on Hetzner
 
 I then ran my trusty Ansible Debian Server setup script: `ansible-playbook -i hosts setup_debian.yml`
-     
+
 _setup_debian.yml_:
+
 ```yaml
 ---
 - name: Setup Debian server, secure SSH, and change SSH port
@@ -62,11 +63,14 @@ _setup_debian.yml_:
         regexp: "{{ item.regexp }}"
         line: "{{ item.line }}"
       loop:
-        - { regexp: '^#?Port', line: 'Port {{ new_ssh_port }}' }
-        - { regexp: '^PermitRootLogin', line: 'PermitRootLogin no' }
-        - { regexp: '^PasswordAuthentication', line: 'PasswordAuthentication no' }
-        - { regexp: '^X11Forwarding', line: 'X11Forwarding no' }
-        - { regexp: '^MaxAuthTries', line: 'MaxAuthTries 3' }
+        - { regexp: "^#?Port", line: "Port {{ new_ssh_port }}" }
+        - { regexp: "^PermitRootLogin", line: "PermitRootLogin no" }
+        - {
+            regexp: "^PasswordAuthentication",
+            line: "PasswordAuthentication no",
+          }
+        - { regexp: "^X11Forwarding", line: "X11Forwarding no" }
+        - { regexp: "^MaxAuthTries", line: "MaxAuthTries 3" }
       notify: Restart SSH
 
     - name: Ensure public key authentication is enabled
@@ -80,32 +84,33 @@ _setup_debian.yml_:
       lineinfile:
         path: /etc/sudoers
         state: present
-        regexp: '^{{ new_user }}'
-        line: '{{ new_user }} ALL=(ALL) NOPASSWD: ALL'
-        validate: 'visudo -cf %s'
+        regexp: "^{{ new_user }}"
+        line: "{{ new_user }} ALL=(ALL) NOPASSWD: ALL"
+        validate: "visudo -cf %s"
 
   handlers:
     - name: Restart SSH
       service:
         name: ssh
         state: restarted
-
-
 ```
 
 _hosts_:
+
 ```ini
 [mail.nich.dk]
 88.198.127.102 ansible_user=root
 ```
 
 I then made sure the hostname is correct.
-* `sudo nano /etc/hostname`
-  * Changed the content to _mail.nich.dk_, which is where users will access IMAP and SMTP
-* `sudo nano /etc/hosts`
-  * Changed first entry _127.0.1.1 oldhostname_ to _88.198.127.102 mail.nich.dk_ <- so it routes back to itself. It’s apparently for internal mail or something? Don’t take my word for it, I am completely new to mail hosting. Replace with your own public IP and domain (Your SMTP and IMAP subdomain, not your actual domain - or you can, if you plan to use it as the email domain as well).
+
+- `sudo nano /etc/hostname`
+  - Changed the content to _mail.nich.dk_, which is where users will access IMAP and SMTP
+- `sudo nano /etc/hosts`
+  - Changed first entry _127.0.1.1 oldhostname_ to _88.198.127.102 mail.nich.dk_ <- so it routes back to itself. It’s apparently for internal mail or something? Don’t take my word for it, I am completely new to mail hosting. Replace with your own public IP and domain (Your SMTP and IMAP subdomain, not your actual domain - or you can, if you plan to use it as the email domain as well).
 
 I then installed Docker:
+
 ```bash
 # Add Docker's official GPG key:
 sudo apt-get update
@@ -126,20 +131,21 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 ```
 
-
 Lastly I restarted the machine: `sudo systemctl reboot`
-
 
 ## Setting up Mox
 
 Fix DNSSEC errors
-  * `sudo apt install unbound dns-root-data`
+
+- `sudo apt install unbound dns-root-data`
 
 Create the Mox user:
-  * `sudo su` <- switch to root
-  * `useradd -d $PWD mox` <- will create mox user with the current directory as their home directory
+
+- `sudo su` <- switch to root
+- `useradd -d $PWD mox` <- will create mox user with the current directory as their home directory
 
 Create the directory, which will contain all of the data and the docker compose file:
+
 ```bash
 mkdir mox
 cd mox
@@ -148,19 +154,20 @@ nano docker-compose.yml
 ```
 
 _docker-compose.yml_:
+
 ```yaml
 # Before launching mox, run the quickstart to create config files for running as
 # user the mox user (create it on the host system first, e.g. "useradd -d $PWD mox"):
 #
-#	mkdir config data web
-# 	docker-compose run mox mox quickstart you@yourdomain.example $(id -u mox)
+# mkdir config data web
+#  docker-compose run mox mox quickstart you@yourdomain.example $(id -u mox)
 #
 # note: if you are running quickstart on a different machine than you will deploy
 # mox to, use the "quickstart -hostname ..." flag.
 #
 # After following the quickstart instructions you can start mox:
 #
-# 	docker-compose up
+#  docker-compose up
 #
 
 services:
@@ -172,7 +179,7 @@ services:
       - MOX_DOCKER=yes # Quickstart won't try to write systemd service file.
     # Mox needs host networking because it needs access to the IPs of the
     # machine, and the IPs of incoming connections for spam filtering.
-    network_mode: 'host'
+    network_mode: "host"
     volumes:
       - ./config:/mox/config
       - ./data:/mox/data
@@ -188,8 +195,9 @@ services:
       retries: 10
 ```
 
-Run the quickstart: 
-  * `docker compose run mox mox quickstart example@nich.dk $(id -u mox)` <- replace with your own domain
+Run the quickstart:
+
+- `docker compose run mox mox quickstart example@nich.dk $(id -u mox)` <- replace with your own domain
 
 **MAKE SURE YOU READ THE OUTPUT CAREFULLY!!**
 There is very important info. You will see various errors and important info here. The most important information that you will see is your admin and account login information. Save this somewhere!!
@@ -213,18 +221,20 @@ Profit?
 ### Webmail
 
 You can also access the built-in webmail by forwarding the remote port to your device like so:
-  * `ssh -L 8080:localhost:80 -p 1234 user@ip/domain`
-  * Then navigate to [http://localhost:8080/webmail/](http://localhost:8080/webmail/) and login with your details.
+
+- `ssh -L 8080:localhost:80 -p 1234 user@ip/domain`
+- Then navigate to [http://localhost:8080/webmail/](http://localhost:8080/webmail/) and login with your details.
 
 ![Mox webmail](/mox-webmail.png "Mox webmail")
 
 # What now?
 
 You and I should probably read this [as recommended](https://www.xmox.nl/faq/#hdr-i-m-now-running-an-email-server-but-how-does-email-work) by Mox:
-https://explained-from-first-principles.com/email/
+<https://explained-from-first-principles.com/email/>
 
 We should probably also set up some backup solution, so we won’t lose our emails in case of server (or human) failure.
 
 I will be running Mox for a while and do some testing. If it proves reliable, then I’ll switch over to it as my primary email solution.
 
 See you around!
+
