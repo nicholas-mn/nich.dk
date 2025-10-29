@@ -13,7 +13,7 @@ I was convinced that developing things from scratch was a waste of time.
 Tools like Appsmith, Budibase, Flutterflow etc. are clearly the future.
 Anyone writing things from scratch in frameworks like Angular or React are clearly just wasting their time.
 
-Why would actually code anything from scratch, when you can just drag and drop elements??
+Why would I actually code anything from scratch, when you can just drag and drop elements??
 
 What a fool I was.
 
