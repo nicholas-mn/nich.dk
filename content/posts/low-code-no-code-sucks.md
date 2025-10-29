@@ -66,7 +66,7 @@ n8n is not version controlled in the Community Edition.
 
 Any change might break the app and rolling back is not trivial.
 
-It's actually not possible if you catch the bug after 24 hours.
+It's actually not possible to roll back if you catch the bug after 24 hours.
 In the n8n community version, it only saves old iterations of workflows up to a day.
 
 Collaboration is impossible, as no sane developer wants to learn and use OpenNoodl
