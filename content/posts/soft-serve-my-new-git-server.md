@@ -24,6 +24,18 @@ visiting right now.
 I'm planning on migrating all of my private
 repositories from GitHub.
 
+To make my life easier, I have added the following
+to my SSH config file (~/.ssh/config):
+
+```
+Host soft
+  HostName git.nich.dk
+  Port 23231
+```
+
+So I can access my server easily by just typing
+`ssh soft`
+
 Here are some screenshots:
 
 ![Screenshot](/soft-serve/1.png)
